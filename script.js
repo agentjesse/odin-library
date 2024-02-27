@@ -67,7 +67,7 @@ myLibrary.forEach( (item,index,arr)=> {
 });
 
 //event listeners
-//open modal without bg interactivity
+//open modal without bg interactivity, and make ::backdrop pseudo-element
 newBookBtn.addEventListener('click', ()=> newBookModal.showModal() )
 //close modal
 closeModalBtn.addEventListener('click', evt=>{
