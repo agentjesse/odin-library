@@ -1,5 +1,7 @@
-const booksGrid = document.querySelector('.booksGrid')
-
+const booksGrid = document.querySelector('.booksGrid');
+const newBookBtn = document.querySelector('#newBookBtn');
+const newBookModal = document.querySelector('#newBookModal');
+const closeModalBtn = document.querySelector('#closeModalBtn');
 //library that stores book objects will be an array
 const myLibrary = [
   {
@@ -38,14 +40,14 @@ function Book(title, author, pages, read) {
 
 //create a book, add to library
 function addBookToLibrary() {
-  //get user input, using defaults for now
+  //should get user input, but using defaults for now
   const title = 'The Three Not So Little Bears5', author = 'Jerry Smith', pages = 500, read = false;
   //store the book
   myLibrary.push( new Book(title, author, pages, read) )
 }
 
 //display library on page
-myLibrary.forEach( (item,i,arr)=> {
+myLibrary.forEach( (item,index,arr)=> {
   //make html elements
   const bookElem = document.createElement('article');
   const h3 = document.createElement('h3');
@@ -58,10 +60,18 @@ myLibrary.forEach( (item,i,arr)=> {
   pagesPara.textContent = `Pages: ${item.pages}`;
   readPara.textContent = `Read?: ${item.read}`;
   bookElem.classList.add('book'); //styling class
-  bookElem.setAttribute('data-arr-idex',`${i}`) //index of book in library array
+  bookElem.setAttribute('data-arr-index',`${index}`) //save index of book in library array, might need it
   //append to parents
   bookElem.append(h3, h4, pagesPara, readPara);
   booksGrid.append(bookElem);
+});
+
+//event listeners
+//open modal without bg interactivity
+newBookBtn.addEventListener('click', ()=> newBookModal.showModal() )
+//close modal
+closeModalBtn.addEventListener('click', evt=>{
+  newBookModal.close();
 });
 
 
