@@ -51,17 +51,16 @@ myLibrary.forEach( (item,i,arr)=> {
   const h3 = document.createElement('h3');
   const h4 = document.createElement('h4');
   const pagesPara = document.createElement('p');
+  const readPara = document.createElement('p');
   //add html elements data
   h3.textContent = item.title;
   h4.textContent = item.author;
   pagesPara.textContent = `Pages: ${item.pages}`;
+  readPara.textContent = `Read?: ${item.read}`;
   bookElem.classList.add('book'); //styling class
   bookElem.setAttribute('data-arr-idex',`${i}`) //index of book in library array
-  //set node element properties
-  bookElem.pages = item.pages;
-  bookElem.read = item.read;
   //append to parents
-  bookElem.append(h3, h4, pagesPara);
+  bookElem.append(h3, h4, pagesPara, readPara);
   booksGrid.append(bookElem);
 });
 

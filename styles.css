@@ -6,7 +6,8 @@ input, button, textarea, select { font: inherit; }
 
 /* variables---------------------------------------------------------------- */
 :root{
-  --grey1: hsl(214 32% 91%); 
+  --grey1: hsl(214 32% 85%);
+  --grey2: hsl(214 32% 91%);
 }
 
 /* main CSS */
@@ -16,8 +17,13 @@ body{
 .booksGrid {
   height: 100%;
   display: grid;
+  grid-template: 1fr / repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 1rem;
   background-color: var(--grey1);
   .book{
-
+    background-color: var(--grey2);
+    border-radius: 10px;
+    padding: 1rem;
   }
 }
