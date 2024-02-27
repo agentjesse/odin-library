@@ -6,6 +6,18 @@ input, button, textarea, select { font: inherit; }
 
 /* variables---------------------------------------------------------------- */
 :root{
+  --grey1: hsl(214 32% 91%); 
 }
 
 /* main CSS */
+body{
+  height: 100vh;
+}
+.booksGrid {
+  height: 100%;
+  display: grid;
+  background-color: var(--grey1);
+  .book{
+
+  }
+}

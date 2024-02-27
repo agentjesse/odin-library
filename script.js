@@ -1,7 +1,32 @@
-
+const booksGrid = document.querySelector('.booksGrid')
 
 //library that stores book objects will be an array
-const myLibrary = [];
+const myLibrary = [
+  {
+    "title": "The Three Not So Little Bears1",
+    "author": "Jerry Smith",
+    "pages": 500,
+    "read": false
+  },
+  {
+    "title": "The Three Not So Little Bears2",
+    "author": "Jerry Smith",
+    "pages": 500,
+    "read": false
+  },
+  {
+    "title": "The Three Not So Little Bears3",
+    "author": "Jerry Smith",
+    "pages": 500,
+    "read": false
+  },
+  {
+    "title": "The Three Not So Little Bears4",
+    "author": "Jerry Smith",
+    "pages": 500,
+    "read": false
+  },
+];
 
 //book objects constructor
 function Book(title, author, pages, read) {
@@ -13,11 +38,36 @@ function Book(title, author, pages, read) {
 
 //create a book, add to library
 function addBookToLibrary() {
-  const title = 'The Three Not So Little Bears', author = 'Jerry Smith', pages = 500, read = false;
+  //get user input, using defaults for now
+  const title = 'The Three Not So Little Bears5', author = 'Jerry Smith', pages = 500, read = false;
+  //store the book
   myLibrary.push( new Book(title, author, pages, read) )
 }
 
-//testing
+//display library on page
+myLibrary.forEach( (item,i,arr)=> {
+  //make html elements
+  const bookElem = document.createElement('article');
+  const h3 = document.createElement('h3');
+  const h4 = document.createElement('h4');
+  const pagesPara = document.createElement('p');
+  //add html elements data
+  h3.textContent = item.title;
+  h4.textContent = item.author;
+  pagesPara.textContent = `Pages: ${item.pages}`;
+  bookElem.classList.add('book'); //styling class
+  bookElem.setAttribute('data-arr-idex',`${i}`) //index of book in library array
+  //set node element properties
+  bookElem.pages = item.pages;
+  bookElem.read = item.read;
+  //append to parents
+  bookElem.append(h3, h4, pagesPara);
+  booksGrid.append(bookElem);
+});
 
+
+//test book adding to library arr
+/*
 addBookToLibrary();
-console.log(myLibrary);
+console.log(`Library array: `, myLibrary);
+*/
