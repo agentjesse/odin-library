@@ -17,7 +17,25 @@
   <button id='newBookBtn' type="button">NEW BOOK</button>
 
   <dialog id='newBookModal'>
-    <button id='closeModalBtn' autofocus>Close</button>
+    <form method="dialog">
+
+      <label>Title:
+        <input type="text" id="title" placeholder="Different Ways To Eat Carrots" required>
+      </label>
+      <label>Author:
+        <input type="text" id="author" placeholder="Jerry Smith" required>
+      </label>
+      <label>Pages:
+        <input type="number" id="pages" placeholder="9999">
+      </label>
+      <label>Read?:
+        <input type="checkbox" id="readState">
+      </label>
+
+      <button id='closeModalBtn' >Close</button>
+      <button id='submitBookBtn' >Submit</button>
+
+    </form>
   </dialog>
 
   <section class="booksGrid">

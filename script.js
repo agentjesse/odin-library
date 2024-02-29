@@ -2,6 +2,11 @@ const booksGrid = document.querySelector('.booksGrid');
 const newBookBtn = document.querySelector('#newBookBtn');
 const newBookModal = document.querySelector('#newBookModal');
 const closeModalBtn = document.querySelector('#closeModalBtn');
+const submitBookBtn= document.querySelector('#submitBookBtn');
+const titleInput = document.querySelector('#title');
+const authorInput = document.querySelector('#author');
+const pagesInput = document.querySelector('#pages');
+const readInput = document.querySelector('#readState');
 //library that stores book objects will be an array
 const myLibrary = [
   {
@@ -67,11 +72,24 @@ myLibrary.forEach( (item,index,arr)=> {
 });
 
 //event listeners
-//open modal without bg interactivity, and make ::backdrop pseudo-element
+//open modal without bg interactivity, also makes ::backdrop pseudo-element
 newBookBtn.addEventListener('click', ()=> newBookModal.showModal() )
-//close modal
-closeModalBtn.addEventListener('click', evt=>{
-  newBookModal.close();
+//close and open modal from buttons within a form with method=dialog
+closeModalBtn.addEventListener('click', ()=> newBookModal.close() );
+submitBookBtn.addEventListener('click', e =>{
+  //check at least title and author inputs filled, make object
+  if ( titleInput.checkValidity() && authorInput.checkValidity() ) {
+    const bookObj = {
+      "title": titleInput.value,
+      "author": authorInput.value,
+      "pages": pagesInput.value,
+      "read": readInput.checked,
+    }
+    //use data for new book, then close
+    
+    newBookModal.close();
+  }
+  
 });
 
 

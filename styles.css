@@ -39,3 +39,19 @@ body{
   gap: 1rem;
   background-color: var(--grey1);
 }
+
+#newBookModal {
+  margin: 1rem auto;
+  width: 85%;
+  form {
+    input {
+      width: 100%;
+    }
+    label:nth-of-type(4){
+      display: flex;
+      input {
+        margin-left: -46%; /* pull checkbox left towards label */
+      }
+    }
+  }
+}
