@@ -59,15 +59,16 @@ const updateBooksGrid = ()=> {
     const h4 = document.createElement('h4');
     const pagesPara = document.createElement('p');
     const readPara = document.createElement('p');
+    const removeBookIcon = document.createElement('div');
     //add html elements data
     h3.textContent = item.title;
     h4.textContent = item.author;
     pagesPara.textContent = `Pages: ${item.pages}`;
     readPara.textContent = `Read?: ${item.read}`;
     bookElem.classList.add('book'); //styling class
-    bookElem.setAttribute('data-arr-index',`${index}`) //save index of book in library array, might need it
+    removeBookIcon.setAttribute('data-arr-i',`${index}`)
     //append to parents
-    bookElem.append(h3, h4, pagesPara, readPara);
+    bookElem.append(h3, h4, pagesPara, readPara, removeBookIcon);
     booksGrid.append(bookElem);
   });
 }
@@ -75,14 +76,29 @@ updateBooksGrid(); //first run to populate page
 
 //event listeners
 //open modal without bg interactivity, also makes ::backdrop pseudo-element
-newBookBtn.addEventListener('click', ()=> newBookModal.showModal() );
+newBookBtn.addEventListener('click', e=> {
+  e.stopPropagation();
+  newBookModal.showModal();
+});
 //close and open modal from buttons within a form with method=dialog
-closeModalBtn.addEventListener('click', ()=> newBookModal.close() );
-submitBookBtn.addEventListener('click', ()=> {
+closeModalBtn.addEventListener('click', e=> {
+  e.stopPropagation();
+  newBookModal.close();
+});
+submitBookBtn.addEventListener('click', e=> {
+  e.stopPropagation();
   if ( titleInput.checkValidity() && authorInput.checkValidity() ) { //check at least title and author inputs filled
     //use data for new book with the odin required addBookToLibrary fn
     addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
     updateBooksGrid();
     newBookModal.close(); //also sends a close event, if needed
+  }
+});
+//listener to catch bubbling clicks to remove book from library
+booksGrid.addEventListener('click', e=> {
+  e.stopPropagation();
+  if ( e.target.dataset.arrI ){ //if book removal div element is clicked
+    myLibrary.splice(e.target.dataset.arrI,1)
+    updateBooksGrid();
   }
 });
