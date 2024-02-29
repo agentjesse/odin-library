@@ -19,20 +19,20 @@ body{
 }
 .booksGrid {
   display: grid;
-  grid-template: 1fr / repeat(3, 1fr);
-  grid-auto-rows: 1fr;
+  grid-template: 1fr / repeat(auto-fit, minmax(12rem,13rem));
   gap: 1rem;
-  padding: 0.5rem;
+  padding: 1rem; /*works great with place-content (which is justify/align grid content)*/
+  place-content: center;
   background-color: var(--grey1);
   .book{
     background-color: var(--grey2);
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1rem 1rem 4rem 1rem;
   }
 }
 
 #newBookModal {
-  margin: 1rem auto;
+  margin: auto;
   width: 85%;
   form {
     input {

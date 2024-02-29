@@ -10,30 +10,31 @@ const readInput = document.querySelector('#read');
 //library that stores book objects will be an array
 const myLibrary = [
   {
-    "title": "The Three Not So Little Bears1",
-    "author": "Jerry Smith",
-    "pages": 500,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "pages": 180,
     "read": false
   },
   {
-    "title": "The Three Not So Little Bears2",
-    "author": "Jerry Smith",
-    "pages": 500,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "pages": 281,
     "read": false
   },
   {
-    "title": "The Three Not So Little Bears3",
-    "author": "Jerry Smith",
-    "pages": 500,
+    "title": "1984",
+    "author": "George Orwell",
+    "pages": 328,
     "read": false
   },
   {
-    "title": "The Three Not So Little Bears4",
-    "author": "Jerry Smith",
-    "pages": 500,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "pages": 432,
     "read": false
-  },
+  }
 ];
+
 
 //book objects constructor
 function Book(title, author, pages, read) {
