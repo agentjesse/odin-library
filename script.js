@@ -43,6 +43,10 @@ function Book(title, author, pages, read) {
   this.pages = pages ? pages : 'N/A';
   this.read = read;
 }
+//Book object methods on the shared prototype object. not using arrow functions for the this value
+Book.prototype.changeReadState = function () {
+  console.log(this);
+}
 
 //create a book, add to library array
 function addBookToLibrary(title, author, pages, read) {
@@ -58,17 +62,18 @@ const updateBooksGrid = ()=> {
     const h3 = document.createElement('h3');
     const h4 = document.createElement('h4');
     const pagesPara = document.createElement('p');
-    const readPara = document.createElement('p');
+    const readInput = document.createElement('input');
     const removeBookIcon = document.createElement('div');
     //add html elements data
     h3.textContent = item.title;
     h4.textContent = item.author;
     pagesPara.textContent = `Pages: ${item.pages}`;
-    readPara.textContent = `Read?: ${item.read}`;
+    readInput.setAttribute('type','checkbox');
+    readInput.checked = item.read ? true : false;
     bookElem.classList.add('book'); //styling class
     removeBookIcon.setAttribute('data-arr-i',`${index}`)
     //append to parents
-    bookElem.append(h3, h4, pagesPara, readPara, removeBookIcon);
+    bookElem.append(h3, h4, pagesPara, readInput, removeBookIcon);
     booksGrid.append(bookElem);
   });
 }
@@ -97,8 +102,11 @@ submitBookBtn.addEventListener('click', e=> {
 //listener to catch bubbling clicks to remove book from library
 booksGrid.addEventListener('click', e=> {
   e.stopPropagation();
-  if ( e.target.dataset.arrI ){ //if book removal div element is clicked
+  //if book removal div element is clicked
+  if ( e.target.dataset.arrI ){ 
     myLibrary.splice(e.target.dataset.arrI,1)
     updateBooksGrid();
   }
+  //if change read state CHECKBOX clicked
+  
 });
