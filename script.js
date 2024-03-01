@@ -74,18 +74,21 @@ const updateBooksGrid = ()=> {
     const h3 = document.createElement('h3');
     const h4 = document.createElement('h4');
     const pagesPara = document.createElement('p');
+    const readLabel = document.createElement('label');
     const readInput = document.createElement('input');
     const removeBookIcon = document.createElement('div');
     //add html elements data
     h3.textContent = item.title;
     h4.textContent = item.author;
     pagesPara.textContent = `Pages: ${item.pages}`;
+    readLabel.textContent = 'Read: ';
     readInput.setAttribute('type','checkbox');
     readInput.checked = item.read ? true : false;
     bookElem.classList.add('book'); //styling class
     removeBookIcon.setAttribute('data-arr-i',`${index}`)
     //append to parents
-    bookElem.append(h3, h4, pagesPara, readInput, removeBookIcon);
+    readLabel.append(readInput);
+    bookElem.append(h3, h4, pagesPara, readLabel, removeBookIcon);
     booksGrid.append(bookElem);
   });
 }
