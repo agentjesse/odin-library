@@ -10,27 +10,33 @@ const readInput = document.querySelector('#read');
 //library that stores book objects will be an array
 const myLibrary = [
   {
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
-    "pages": 180,
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "pages": 277,
     "read": false
   },
   {
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "pages": 281,
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "pages": 224,
     "read": false
   },
   {
-    "title": "1984",
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "pages": 249,
+    "read": false
+  },
+  {
+    "title": "Animal Farm",
     "author": "George Orwell",
-    "pages": 328,
+    "pages": 112,
     "read": false
   },
   {
-    "title": "Pride and Prejudice",
-    "author": "Jane Austen",
-    "pages": 432,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "pages": 311,
     "read": false
   }
 ];
@@ -45,15 +51,21 @@ function Book(title, author, pages, read) {
 }
 //Book object methods on the shared prototype object. not using arrow functions for the this value
 Book.prototype.changeReadState = function () {
-  console.log(this);
+  this.read = this.read ? false : true;
 }
 
 //create a book, add to library array
 function addBookToLibrary(title, author, pages, read) {
-  myLibrary.push( new Book(title, author, pages, read) )
+  myLibrary.push( new Book(title, author, pages, read) );
 }
 
-//build and display library on page
+//dummy book objects need to have their prototype chain set:
+myLibrary.forEach( dummyBook=> {
+  Object.setPrototypeOf(dummyBook, Book.prototype);
+  //obj.constructor = Book;// Optionally update constructor reference
+});
+
+//(re)build and display library on page after library array changes ..ouch
 const updateBooksGrid = ()=> {
   booksGrid.textContent = ''; //clear books before adding
   myLibrary.forEach( (item,index)=> {
@@ -108,5 +120,7 @@ booksGrid.addEventListener('click', e=> {
     updateBooksGrid();
   }
   //if change read state CHECKBOX clicked
-  
+  if (e.target.type === 'checkbox'){ //event bubbles to booksGrid,just match the checkbox input
+    myLibrary[+e.target.nextElementSibling.dataset.arrI].changeReadState(); //div with data-* attr is next element after
+  }
 });
