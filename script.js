@@ -77,8 +77,7 @@ const updateBooksGrid = ()=> {
     const readLabel = document.createElement('label');
     const readInput = document.createElement('input');
     //add wrapper for book removal icon here, and edit any associated parent child finding logic later 
-    
-
+    const removeWrapper = document.createElement('div');
     const removeBookIcon = document.createElement('div');
     //add html elements data
     h3.textContent = item.title;
@@ -88,10 +87,12 @@ const updateBooksGrid = ()=> {
     readInput.setAttribute('type','checkbox');
     readInput.checked = item.read ? true : false;
     bookElem.classList.add('book'); //styling class
+    removeWrapper.classList.add('removeWrapper'); //styling class
     removeBookIcon.setAttribute('data-arr-i',`${index}`)
     //append to parents
     readLabel.append(readInput);
-    bookElem.append(h3, h4, pagesPara, readLabel, removeBookIcon);
+    removeWrapper.append(removeBookIcon);
+    bookElem.append(h3, h4, pagesPara, readLabel, removeWrapper);
     booksGrid.append(bookElem);
   });
 }

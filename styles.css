@@ -12,10 +12,21 @@ input, button, textarea, select { font: inherit; }
 
 /* main CSS */
 body{
-  height: 100vh;
+  /* height: 100vh; */
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   background-color: var(--grey1);
+  h1 {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  #newBookBtn {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.75rem;
+    border-radius: 33px;
+    border: 3px solid hsl(213 21% 54% / 1);
+  }
 }
 .booksGrid {
   display: grid;
@@ -23,7 +34,6 @@ body{
   gap: 1rem;
   padding: 1rem; /*works great with place-content (which is justify/align grid content)*/
   place-content: center;
-  background-color: var(--grey1);
   .book{
     background-color: var(--grey2);
     border-radius: 10px;
@@ -53,12 +63,18 @@ body{
         height: 1.25rem;
       }
     }
-    div{
+    .removeWrapper{
       grid-area: 5/4/6/6;
-      width: 1.7rem;
-      height: 1.7rem;
-      background-image: url('./assets/book-remove.svg');
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      div{
+        width: 1.7rem;
+        height: 1.7rem;
+        background-image: url('./assets/book-remove.svg');
+      }
     }
+    
   }
 }
 
