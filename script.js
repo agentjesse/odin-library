@@ -77,7 +77,7 @@ const updateBooksGrid = ()=> {
     const readLabel = document.createElement('label');
     const readInput = document.createElement('input');
     //add wrapper for book removal icon here, and edit any associated parent child finding logic later 
-
+    
 
     const removeBookIcon = document.createElement('div');
     //add html elements data
