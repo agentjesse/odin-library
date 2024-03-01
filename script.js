@@ -128,6 +128,6 @@ booksGrid.addEventListener('click', e=> {
   }
   //if change read state CHECKBOX clicked
   if (e.target.type === 'checkbox'){ //event bubbles to booksGrid,just match the checkbox input
-    myLibrary[+e.target.nextElementSibling.dataset.arrI].changeReadState(); //div with data-* attr is next element after
+    myLibrary[+e.target.parentElement.nextElementSibling.children['0'].dataset.arrI].changeReadState(); //div with data-* attr is next element after
   }
 });
