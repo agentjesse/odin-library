@@ -42,16 +42,17 @@ const myLibrary = [
 ];
 
 
-//book objects constructor
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages ? pages : 'N/A';
-  this.read = read;
-}
-//Book object methods on the shared prototype object. not using arrow functions for the this value
-Book.prototype.changeReadState = function () {
-  this.read = this.read ? false : true;
+//book objects made with class instead of constructor
+class Book {
+  constructor(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages ? pages : 'N/A';
+    this.read = read;
+  }
+  changeReadState() {
+    this.read = this.read ? false : true;
+  }
 }
 
 //create a book, add to library array
@@ -62,7 +63,6 @@ function addBookToLibrary(title, author, pages, read) {
 //dummy book objects need to have their prototype chain set:
 myLibrary.forEach( dummyBook=> {
   Object.setPrototypeOf(dummyBook, Book.prototype);
-  //obj.constructor = Book;// Optionally update constructor reference
 });
 
 //(re)build and display library on page after library array changes ..ouch
