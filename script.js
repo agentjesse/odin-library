@@ -111,7 +111,11 @@ closeModalBtn.addEventListener('click', e=> {
 });
 submitBookBtn.addEventListener('click', e=> {
   e.stopPropagation();
-  if ( titleInput.checkValidity() && authorInput.checkValidity() ) { //check at least title and author inputs filled
+  //check all inputs filled
+  if ( titleInput.checkValidity()
+    && authorInput.checkValidity()
+    && pagesInput.checkValidity()
+  ) {
     //use data for new book with the odin required addBookToLibrary fn
     addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
     updateBooksGrid();
